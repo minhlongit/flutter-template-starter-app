@@ -1,10 +1,10 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
-import 'package:starterapp/constants/repository_constants/api_constants/routes/api_route_constants.dart';
-import 'package:starterapp/exceptions/api/api_exceptions.dart';
-import 'package:starterapp/exceptions/auth/auth_exception.dart';
-import 'package:starterapp/helper/api/api_route_helper.dart';
-import 'package:starterapp/helper/auth/jwt_token_helper.dart';
+import 'package:starter_app/constants/repository_constants/api_constants/routes/api_route_constants.dart';
+import 'package:starter_app/exceptions/api/api_exceptions.dart';
+import 'package:starter_app/exceptions/auth/auth_exception.dart';
+import 'package:starter_app/helper/api/api_route_helper.dart';
+import 'package:starter_app/helper/auth/jwt_token_helper.dart';
 
 class ApiBaseCore {
   late Dio

@@ -1,8 +1,8 @@
 import 'package:provider/provider.dart';
-import 'package:starterapp/l10n/l10n.dart';
-import 'package:starterapp/routes/routes_constants.dart';
-import 'package:starterapp/services/locale_service_provider.dart';
-import 'package:starterapp/themes/themes.dart';
+import 'package:starter_app/l10n/l10n.dart';
+import 'package:starter_app/routes/routes_constants.dart';
+import 'package:starter_app/services/locale_service_provider.dart';
+import 'package:starter_app/themes/themes.dart';
 import 'routes/router.dart' as router;
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -18,7 +18,7 @@ class StarterApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner:
               false, // Tắt hiển thị banner "debug" ở góc trên bên phải.
-          title: 'starterapp', // Đặt tiêu đề cho ứng dụng.
+          title: 'starter_app', // Đặt tiêu đề cho ứng dụng.
           theme: lightTheme, // Áp dụng giao diện sáng cho ứng dụng.
           initialRoute: RoutesConstants
               .splashScreenRoute, // Đặt route ban đầu là màn hình splash.

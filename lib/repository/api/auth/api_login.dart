@@ -6,9 +6,9 @@
 
 // import 'dart:developer';
 // import 'package:dio/dio.dart';
-// import 'package:starterapp/api/base/api_core.dart';
-// import 'package:starterapp/helper/api/api_route_helper.dart';
-// import 'package:starterapp/helper/api/jwt_token_helper.dart';
+// import 'package:starter_app/api/base/api_core.dart';
+// import 'package:starter_app/helper/api/api_route_helper.dart';
+// import 'package:starter_app/helper/api/jwt_token_helper.dart';
 
 // class ApiAuth {
 //   ApiBaseCore apiBaseCore = ApiBaseCore();

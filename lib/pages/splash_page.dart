@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
-import 'package:starterapp/constants/style/style_constants.dart';
-import 'package:starterapp/routes/routes_constants.dart';
-import 'package:starterapp/services/locale_service_provider.dart';
+import 'package:starter_app/constants/style/style_constants.dart';
+import 'package:starter_app/routes/routes_constants.dart';
+import 'package:starter_app/services/locale_service_provider.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -82,7 +82,7 @@ class _SplashPageState extends State<SplashPage> {
               children: [
                 FittedBox(
                   child: Text(
-                    "starterapp",
+                    "starter_app",
                     style: TextStyle(
                       fontSize: 50,
                       color: Colors.white,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:starterapp/constants/style/style_constants.dart';
+import 'package:starter_app/constants/style/style_constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LandingPage extends StatelessWidget {
@@ -15,7 +15,7 @@ class LandingPage extends StatelessWidget {
         elevation: 0,
         automaticallyImplyLeading: false,
         title: const Text(
-          "starterapp",
+          "Starter App",
           style: TextStyle(
             fontSize: 40,
             color: StyleConstants.colorTitle,

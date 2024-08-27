@@ -1,6 +1,6 @@
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
-import 'package:starterapp/constants/repository_constants/api_constants/auth/api_token_constants.dart';
-import 'package:starterapp/repository/local_storage/auth/jwt_local_storage.dart';
+import 'package:starter_app/constants/repository_constants/api_constants/auth/api_token_constants.dart';
+import 'package:starter_app/repository/local_storage/auth/jwt_local_storage.dart';
 
 class JwtTokenHelper {
   // Khởi tạo trình xử lý lưu trữ cục bộ cho JWT.

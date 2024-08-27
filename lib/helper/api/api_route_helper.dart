@@ -1,5 +1,5 @@
 // Import các hằng số đường dẫn API từ một package nội bộ.
-import 'package:starterapp/constants/repository_constants/api_constants/routes/api_route_constants.dart';
+import 'package:starter_app/constants/repository_constants/api_constants/routes/api_route_constants.dart';
 
 // Lớp ApiRouteHelper chứa các phương thức trợ giúp liên quan đến đường dẫn API.
 class ApiRouteHelper {

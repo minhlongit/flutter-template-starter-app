@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:starterapp/pages/error/no_internet_page.dart';
-import 'package:starterapp/pages/landing_page.dart';
-import 'package:starterapp/pages/splash_page.dart';
-import 'package:starterapp/pages/undefinited_page.dart';
-import 'package:starterapp/routes/routes_constants.dart';
+import 'package:starter_app/pages/error/no_internet_page.dart';
+import 'package:starter_app/pages/landing_page.dart';
+import 'package:starter_app/pages/splash_page.dart';
+import 'package:starter_app/pages/undefinited_page.dart';
+import 'package:starter_app/routes/routes_constants.dart';
 
 // Hàm `generateRoute` được sử dụng để tạo và quản lý các route (đường dẫn) trong ứng dụng.
 Route<dynamic> generateRoute(RouteSettings settings) {

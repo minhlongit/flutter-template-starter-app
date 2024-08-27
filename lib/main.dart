@@ -1,8 +1,8 @@
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:starterapp/services/locale_service_provider.dart';
+import 'package:starter_app/services/locale_service_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:starterapp/starter_app.dart';
+import 'package:starter_app/starter_app.dart';
 
 void main() async {
   WidgetsFlutterBinding
@@ -24,7 +24,7 @@ void main() async {
         ),
       ],
       child:
-          const StarterApp(), // Khởi chạy ứng dụng với widget gốc là starterapp.
+          const StarterApp(), // Khởi chạy ứng dụng với widget gốc là starter_app.
     ),
   );
 }

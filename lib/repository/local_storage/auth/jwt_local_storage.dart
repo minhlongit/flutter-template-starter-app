@@ -1,5 +1,5 @@
-import 'package:starterapp/constants/repository_constants/local_storage_constants/auth/jwt_token_keys.dart';
-import 'package:starterapp/repository/local_storage/base/local_storage_core.dart';
+import 'package:starter_app/constants/repository_constants/local_storage_constants/auth/jwt_token_keys.dart';
+import 'package:starter_app/repository/local_storage/base/local_storage_core.dart';
 
 class JwtLocalStorage {
   // Tạo một đối tượng LocalStorageCore để tương tác với bộ nhớ cục bộ.

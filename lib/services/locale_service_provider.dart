@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:starterapp/l10n/l10n.dart';
-import 'package:starterapp/repository/local_storage/settings/preferences_local_storage.dart';
+import 'package:starter_app/l10n/l10n.dart';
+import 'package:starter_app/repository/local_storage/settings/preferences_local_storage.dart';
 
 // Lớp `LocaleServiceProvider` được sử dụng để quản lý và cập nhật ngôn ngữ (Locale) cho ứng dụng.
 // Lớp này kế thừa từ `ChangeNotifier`, giúp thông báo các widget liên quan khi có sự thay đổi về ngôn ngữ.
