@@ -1,42 +1,55 @@
-[![Flutter CI](https://github.com/EliaTolin/flutter-template-starter-app/actions/workflows/flutter_ci.yml/badge.svg)](https://github.com/EliaTolin/flutter-template-starter-app/actions/workflows/flutter_ci.yml)
-[![Code Quality](https://github.com/EliaTolin/flutter-template-starter-app/actions/workflows/code_quality_flutter.yml/badge.svg)](https://github.com/EliaTolin/flutter-template-starter-app/actions/workflows/code_quality_flutter.yml)
+[![Flutter CI](https://github.com/minhlongit/flutter-template-starter-app/actions/workflows/flutter_ci.yml/badge.svg)](https://github.com/minhlongit/flutter-template-starter-app/actions/workflows/flutter_ci.yml)
+[![Code Quality](https://github.com/minhlongit/flutter-template-starter-app/actions/workflows/code_quality_flutter.yml/badge.svg)](https://github.com/minhlongit/flutter-template-starter-app/actions/workflows/code_quality_flutter.yml)
 
-![Flutter Starter App](https://github.com/EliaTolin/flutter-template-starter-app/assets/60351315/df279758-867d-4265-a3fc-d637e5305819)
+![Flutter Starter App](https://github.com/user-attachments/assets/77609620-92f5-4fba-b6f1-3b2d478480d3)
 
-## Description
 
-This repository serves as a template Layer first for a Flutter app, providing a modular structure and integrating various packages and functionalities. The project aims to offer a solid foundation for building robust Flutter applications with the following features:
+# 🌟 Flutter App Template - Layer First Approach
 
--   **Dio**: A powerful package for handling network requests, allowing seamless communication with APIs.
--   **l10n**: Enables multi-language support, making it easy to localize your app for different languages.
--   **Provider**: A state management solution that simplifies the management and sharing of application state.
--   **Shared Preferences**: Provides a simple way to persistently store key-value pairs, allowing for data persistence across app sessions.
--   **JWT**: Offers support for JSON Web Tokens, enabling secure authentication and authorization mechanisms.
--   **Various Helper Classes**: Includes a collection of utility classes that assist with common tasks, making development more efficient.
--   **Language Service**: A service that allows users to dynamically switch the language within the app, enhancing the user experience.
--   **Named Routing**: Implements a navigation system using named routes, making it easier to navigate between screens and manage app flow.
+Welcome to the **Flutter App Template** repository! This template is designed to provide a modular structure with integrated packages and functionalities, helping you kickstart your Flutter projects with a robust and scalable foundation.
 
-## Modularity
+## 🚀 Features
 
-The project has been designed with a strong focus on modularity. This modular architecture enables easy customization, extension, and maintenance of the app. Each package and functionality is independent, allowing developers to add, remove, or modify components as per their project requirements.
+This template comes packed with the following powerful features:
 
-## Usage
+- **⚡ Dio**: A robust HTTP client for seamless API communication.
+- **🌐 l10n**: Multi-language support for easy localization.
+- **🔧 Provider**: Simplified state management across your application.
+- **💾 Shared Preferences**: Persistent key-value storage across app sessions.
+- **🔐 JWT**: Secure authentication and authorization with JSON Web Tokens.
+- **🛠️ Helper Classes**: Utility classes to streamline development.
+- **🌍 Language Service**: Dynamically switch app languages for better user experience.
+- **🧭 Named Routing**: Manage app navigation with ease using named routes.
 
-To use this project template, follow these steps:
+## 🛠️ Modularity
 
-1.  Clone the repository to your local machine.
-2.  Open the project in your preferred Flutter development environment.
-3.  Customize the app's functionality, UI, and features according to your project requirements.
-4.  Build and run the app on your preferred platform or device.
+Designed with modularity at its core, this template allows for easy customization and extension. Each package and functionality is independent, enabling you to add, remove, or modify components to suit your project needs.
 
-## Contributions
+## 🏁 Getting Started
 
-Contributions to this project are welcome. If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+Follow these steps to set up and start using this template:
 
-## License
+1. **Clone the Repository**:
+2. **Open the project in your preferred Flutter development environment.**
+3. **Customize the app's functionality, UI, and features according to your project requirements.**
+4. **Build and run the app on your preferred platform or device.**
 
-This project is licensed under the [MIT License](https://chat.openai.com/link-to-license). Please refer to the LICENSE file for more information.
+## 🤝 Contributions
 
-## Acknowledgements
+We welcome contributions! If you find any issues or have ideas for improvement, feel free to open an issue or submit a pull request. Together, we can make this template even better!
 
-We would like to acknowledge the creators and contributors of the packages and functionalities integrated into this project template. Their work has made building Flutter apps more efficient and enjoyable.
+## 📄 License
+
+This project is licensed under the [MIT License](https://github.com/minhlongit/flutter-template-starter-app?tab=MIT-1-ov-file). Please refer to the LICENSE file for more information.
+
+## 🙏 Acknowledgements
+
+We extend our gratitude to the creators and contributors of the packages and tools integrated into this template. Your work makes Flutter development a more enjoyable experience.
+
+<div align="center">
+  <img src="https://img.shields.io/github/license/minhlongit/flutter-template-starter-app?style=for-the-badge" alt="License" /> <img src="https://img.shields.io/github/stars/minhlongit/flutter-template-starter-app?style=for-the-badge" alt="Stars" />
+  <img src="https://img.shields.io/github/forks/minhlongit/flutter-template-starter-app?style=for-the-badge" alt="Forks" />
+</div>
+<div align="center">
+  <sub>Made with 💙 by <a href="https://github.com/minhlongit">NGUYEN MINH LONG</a></sub>
+</div>
