@@ -1,5 +1,4 @@
-[![Flutter CI](https://github.com/minhlongit/flutter-template-starter-app/actions/workflows/flutter_ci.yml/badge.svg)](https://github.com/minhlongit/flutter-template-starter-app/actions/workflows/flutter_ci.yml)
-[![Code Quality](https://github.com/minhlongit/flutter-template-starter-app/actions/workflows/code_quality_flutter.yml/badge.svg)](https://github.com/minhlongit/flutter-template-starter-app/actions/workflows/code_quality_flutter.yml)
+[![Flutter CI](https://github.com/minhlongit/flutter-template-starter-app/actions/workflows/ci.yml/badge.svg)](https://github.com/minhlongit/flutter-template-starter-app/actions/workflows/ci.yml)
 
 ![Flutter Starter App](https://github.com/user-attachments/assets/77609620-92f5-4fba-b6f1-3b2d478480d3)
 

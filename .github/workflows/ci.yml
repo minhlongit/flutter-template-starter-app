@@ -1,0 +1,103 @@
+name: Flutter CI
+
+on: [push, pull_request]
+
+jobs:
+  format-and-fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Get packages
+        run: flutter pub get
+
+      - name: Check format errors
+        run: dart format --set-exit-if-changed .
+
+      - name: Check lint errors
+        run: flutter analyze .
+
+      - name: Check for outdated dependencies
+        run: flutter pub outdated
+
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: "zulu"
+          java-version: "17"
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build APK
+        run: flutter build apk
+
+      - name: Build App Bundle
+        run: flutter build appbundle
+
+      - name: Create Release Tag
+        id: create_tag
+        run: |
+          TAG_NAME=v1.${{ github.run_number }}
+          echo "TAG_NAME=$TAG_NAME"
+          git tag $TAG_NAME
+          git push origin $TAG_NAME
+          echo "::set-output name=tag_name::$TAG_NAME"
+
+      - name: Upload APK to GitHub Releases
+        uses: softprops/action-gh-release@v1
+        with:
+          files: build/app/outputs/flutter-apk/app-release.apk
+          tag_name: ${{ steps.create_tag.outputs.tag_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-ios:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+          cache: true
+          architecture: x64
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build iOS
+        run: flutter build ios --release --no-codesign
+
+  cache-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Flutter dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.pub-cache
+          key: ${{ runner.os }}-pub-cache-${{ hashFiles('**/pubspec.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-cache-
