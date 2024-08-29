@@ -17,6 +17,7 @@ dependencies:
   provider: ^6.1.2
   dart_jsonwebtoken: ^2.14.0
   shared_preferences: ^2.3.2
+  flutter_native_splash: ^2.4.1
   flutter_localizations:
     sdk: flutter
   internet_connection_checker: ^2.0.0
@@ -33,3 +34,14 @@ flutter:
     - assets/
     - assets/images/
     - assets/icons/
+
+flutter_native_splash:
+  color: "#FFF4E7"
+  image: assets/images/splash/logo.png
+
+  android_12:
+    color: "#FFF4E7"
+    image: assets/images/splash/logo-android12-above.png
+
+  # Disable the splash screen on web
+  web: false
