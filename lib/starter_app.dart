@@ -12,24 +12,16 @@ class StarterApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Sử dụng Consumer để lắng nghe và phản hồi các thay đổi từ LocaleServiceProvider
     return Consumer<LocaleServiceProvider>(
       builder: (context, provider, child) {
         return MaterialApp(
-          debugShowCheckedModeBanner:
-              false, // Tắt hiển thị banner "debug" ở góc trên bên phải.
-          title: 'starter_app', // Đặt tiêu đề cho ứng dụng.
-          theme: lightTheme, // Áp dụng giao diện sáng cho ứng dụng.
-          initialRoute: RoutesConstants
-              .splashScreenRoute, // Đặt route ban đầu là màn hình splash.
-
-          // Cung cấp các delegates cho việc nội địa hóa (localization) trong ứng dụng.
+          debugShowCheckedModeBanner: false,
+          title: 'starter_app',
+          theme: lightTheme,
+          initialRoute: RoutesConstants.splashScreenRoute,
+          locale: provider.locale,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-
-          // Định nghĩa các ngôn ngữ được hỗ trợ trong ứng dụng.
           supportedLocales: L10n.allLanguagesSupported,
-
-          // Tạo ra các route (đường dẫn) dựa trên tên route được yêu cầu.
           onGenerateRoute: router.generateRoute,
         );
       },
