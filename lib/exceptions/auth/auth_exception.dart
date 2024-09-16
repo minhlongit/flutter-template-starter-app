@@ -1,12 +1,12 @@
-// Lớp ngoại lệ cho trường hợp không được ủy quyền, thường được sử dụng khi một yêu cầu đến máy chủ không có quyền truy cập cần thiết.
+// Exception class for unauthorized cases, typically used when a request to the server lacks the necessary access permissions.
 class UnauthorizedException implements Exception {
-  // Khởi tạo một instance của UnauthorizedException.
+  // Initialize an instance of UnauthorizedException.
   const UnauthorizedException() : super();
 }
 
-// Lớp ngoại lệ cho trường hợp token làm mới (refresh token) hết hạn.
-// Điều này thường xảy ra khi ứng dụng cần làm mới token truy cập nhưng refresh token đã không còn hợp lệ.
+// Exception class for cases when the refresh token has expired.
+// This typically occurs when the application needs to refresh the access token but the refresh token is no longer valid.
 class RefreshTokenExpiredException implements Exception {
-  // Khởi tạo một instance của RefreshTokenExpiredException.
+  // Initialize an instance of RefreshTokenExpiredException.
   const RefreshTokenExpiredException() : super();
 }

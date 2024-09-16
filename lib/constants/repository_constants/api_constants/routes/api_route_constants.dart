@@ -1,26 +1,23 @@
 import 'package:flutter/foundation.dart';
 
-// Định nghĩa lớp ApiRouteConstants để quản lý các hằng số đường dẫn API
 class ApiRouteConstants {
-  // Phương thức tĩnh getBaseUrl trả về URL cơ sở của API
   static String getBaseUrl() {
-    // Kiểm tra nếu đang ở chế độ debug
+    // Check if in debug mode
     if (kDebugMode) {
-      // Trả về URL cho môi trường phát triển
+      // Return URL for development environment
       return "https://route.it";
     } else {
-      // Nếu không phải chế độ debug, ném ra ngoại lệ vì chưa hỗ trợ môi trường sản xuất
+      // If not in debug mode, throw an exception as production environment is not supported yet
       throw Exception("Production mode is not supported yet");
     }
   }
 
-  // Định nghĩa các hằng số đường dẫn API
-  // Đường dẫn cơ sở cho API
+  // Base path for API
   static String basePath = "/api/v1";
 
-  // Đường dẫn để lấy token
+  // Path to obtain token
   static String tokenPath = "/token/";
 
-  // Đường dẫn để làm mới token, sử dụng đường dẫn tokenPath đã định nghĩa
+  // Path to refresh token, using the defined tokenPath
   static String refreshTokenPath = "${tokenPath}refresh/";
 }

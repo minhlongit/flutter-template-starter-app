@@ -62,5 +62,4 @@ class Log {
       CustomLogger().error(message, error, stackTrace);
 }
 
-// Sử dụng
 final logger = CustomLogger();

@@ -1,73 +1,73 @@
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
-import 'package:starter_app/constants/repository_constants/api_constants/auth/api_token_constants.dart';
 import 'package:starter_app/repository/local_storage/auth/jwt_local_storage.dart';
+import 'package:starter_app/constants/repository_constants/api_constants/auth/api_token_constants.dart';
 
 class JwtTokenHelper {
-  // Khởi tạo trình xử lý lưu trữ cục bộ cho JWT.
+  // Initialize the local storage handler for JWT.
   JwtLocalStorage jwtLocalStorage = JwtLocalStorage();
 
-  // Kiểm tra xem JWT token có tồn tại trong lưu trữ cục bộ hay không.
+  // Check if the JWT token exists in local storage.
   Future<bool> existJwtToken() => jwtLocalStorage.existJwtToken();
 
-  // Kiểm tra xem refresh token có tồn tại trong lưu trữ cục bộ hay không.
+  // Check if the refresh token exists in local storage.
   Future<bool> existRefreshToken() => jwtLocalStorage.existRefreshToken();
 
-  // Lưu mới JWT và refresh tokens vào lưu trữ cục bộ.
+  // Save new JWT and refresh tokens to local storage.
   Future<void> saveNewJwtTokens(String accessToken, String refreshToken) async {
-    await jwtLocalStorage.saveAccessToken(accessToken); // Lưu access token.
-    await jwtLocalStorage.saveRefreshToken(refreshToken); // Lưu refresh token.
+    await jwtLocalStorage.saveAccessToken(accessToken); // Save access token.
+    await jwtLocalStorage.saveRefreshToken(refreshToken); // Save refresh token.
   }
 
-  // Lấy access token từ lưu trữ cục bộ.
+  // Get the access token from local storage.
   Future<String> getAccessToken() => jwtLocalStorage.getAccessToken();
 
-  // Lấy refresh token từ lưu trữ cục bộ.
+  // Get the refresh token from local storage.
   Future<String> getRefreshToken() => jwtLocalStorage.getRefreshToken();
 
-  // Kiểm tra xem access token lưu trữ có hợp lệ hay không.
+  // Check if the stored access token is valid.
   Future<bool> isValidAccessToken() async {
     if (!await existJwtToken()) {
-      // Nếu không tồn tại JWT token, trả về false.
+      // If JWT token doesn't exist, return false.
       return false;
     }
     try {
-      String token = await getAccessToken(); // Lấy access token.
-      _verifyToken(token); // Xác minh tính hợp lệ của token.
+      String token = await getAccessToken(); // Get the access token.
+      _verifyToken(token); // Verify the validity of the token.
     } on JWTExpiredException {
-      // Nếu token đã hết hạn, xóa tokens và trả về false.
+      // If the token has expired, clear the tokens and return false.
       await clearJwtTokens();
       return false;
     } on JWTException {
-      // Nếu có ngoại lệ liên quan đến JWT, xóa tokens và trả về false.
+      // If there's a JWT-related exception, clear the tokens and return false.
       await clearJwtTokens();
       return false;
     }
-    return true; // Nếu không có ngoại lệ, token hợp lệ.
+    return true; // If no exception, the token is valid.
   }
 
-  // Kiểm tra xem refresh token lưu trữ có hợp lệ hay không.
+  // Check if the stored refresh token is valid.
   Future<bool> isValidRefreshToken() async {
     if (!await existRefreshToken()) {
-      // Nếu không tồn tại refresh token, trả về false.
+      // If refresh token doesn't exist, return false.
       return false;
     }
     try {
-      String token = await getRefreshToken(); // Lấy refresh token.
-      _verifyToken(token); // Xác minh tính hợp lệ của token.
+      String token = await getRefreshToken(); // Get the refresh token.
+      _verifyToken(token); // Verify the validity of the token.
     } on JWTExpiredException {
-      // Nếu token đã hết hạn, trả về false.
+      // If the token has expired, return false.
       return false;
     } on JWTException {
-      // Nếu có ngoại lệ liên quan đến JWT, trả về false.
+      // If there's a JWT-related exception, return false.
       return false;
     }
-    return true; // Nếu không có ngoại lệ, token hợp lệ.
+    return true; // If no exception, the token is valid.
   }
 
-  // Xác minh tính hợp lệ của một token sử dụng cụm từ bí mật.
+  // Verify the validity of a token using the secret phrase.
   _verifyToken(String token) =>
       JWT.verify(token, SecretKey(JwtTokenConstants.jwtSecretPhrase));
 
-  // Xóa tất cả JWT tokens khỏi lưu trữ cục bộ.
+  // Clear all JWT tokens from local storage.
   Future<void> clearJwtTokens() => jwtLocalStorage.clearJwtTokens();
 }

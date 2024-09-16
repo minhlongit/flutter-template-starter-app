@@ -1,11 +1,11 @@
+import 'package:flutter/material.dart';
+import 'routes/router.dart' as router;
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:starter_app/l10n/l10n.dart';
+import 'package:starter_app/themes/themes.dart';
 import 'package:starter_app/routes/routes_constants.dart';
 import 'package:starter_app/services/locale_service_provider.dart';
-import 'package:starter_app/themes/themes.dart';
-import 'routes/router.dart' as router;
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class StarterApp extends StatelessWidget {
   const StarterApp({super.key});

@@ -5,12 +5,12 @@ class LanguageLocalHelper {
     "en": {"name": "English", "nativeName": "English"},
   };
 
-  // Phương thức trả về map các ngôn ngữ.
+  // Method that returns a map of languages.
   Map<String, Map<String, String>> getIsoLangs() => isoLangs;
 
-  // Lấy thông tin ngôn ngữ dựa trên khóa (mã ngôn ngữ).
-  // Nếu khóa tồn tại trong map, trả về thông tin ngôn ngữ.
-  // Nếu không, ném ra ngoại lệ với thông báo khóa ngôn ngữ không chính xác.
+  // Get language information based on the key (language code).
+  // If the key exists in the map, return the language information.
+  // If not, throw an exception with the message "Language key incorrect."
   getDisplayLanguage(key) {
     if (isoLangs.containsKey(key)) {
       return isoLangs[key];
@@ -19,14 +19,14 @@ class LanguageLocalHelper {
     }
   }
 
-  // Lấy tên ngôn ngữ bản địa dựa trên mã quốc gia.
-  // Sử dụng phương thức getDisplayLanguage để lấy thông tin và trả về tên bản địa.
+  // Get the native language name based on the country code.
+  // Uses the getDisplayLanguage method to retrieve the information and return the native name.
   getNativeLanguageName(countryCode) {
     return getDisplayLanguage(countryCode)["nativeName"];
   }
 
-  // Lấy tên ngôn ngữ (tiếng Anh) dựa trên mã quốc gia.
-  // Sử dụng phương thức getDisplayLanguage để lấy thông tin và trả về tên ngôn ngữ.
+  // Get the language name (in English) based on the country code.
+  // Uses the getDisplayLanguage method to retrieve the information and return the language name.
   getLanguageName(countryCode) {
     return getDisplayLanguage(countryCode)["name"];
   }

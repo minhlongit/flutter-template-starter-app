@@ -1,68 +1,68 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
-import 'package:starter_app/constants/repository_constants/api_constants/routes/api_route_constants.dart';
-import 'package:starter_app/exceptions/api/api_exceptions.dart';
-import 'package:starter_app/exceptions/auth/auth_exception.dart';
 import 'package:starter_app/helper/api/api_route_helper.dart';
 import 'package:starter_app/helper/auth/jwt_token_helper.dart';
+import 'package:starter_app/exceptions/api/api_exceptions.dart';
+import 'package:starter_app/exceptions/auth/auth_exception.dart';
+import 'package:starter_app/constants/repository_constants/api_constants/routes/api_route_constants.dart';
 
 class ApiBaseCore {
-  late Dio
-      baseAPI; // Đối tượng Dio sẽ được khởi tạo để quản lý các yêu cầu HTTP.
+  late Dio baseAPI;
 
   final BaseOptions opts = BaseOptions(
-    baseUrl:
-        ApiRouteHelper.getBaseUrl(), // Thiết lập URL gốc cho các yêu cầu API.
-    responseType:
-        ResponseType.json, // Định dạng dữ liệu nhận được từ API là JSON.
-    connectTimeout:
-        const Duration(seconds: 10), // Thời gian chờ kết nối tối đa là 10 giây.
-    receiveTimeout: const Duration(
-        seconds: 10), // Thời gian chờ nhận dữ liệu tối đa là 10 giây.
+    baseUrl: ApiRouteHelper.getBaseUrl(),
+    responseType: ResponseType.json,
+    connectTimeout: const Duration(seconds: 10),
+    receiveTimeout: const Duration(seconds: 10),
   );
 
   Dio createDio() {
-    return Dio(
-        opts); // Tạo một đối tượng Dio mới với các tùy chọn (options) đã cấu hình sẵn.
+    return Dio(opts);
   }
 
   ApiBaseCore() {
-    Dio dio = createDio(); // Tạo một đối tượng Dio mới.
-    baseAPI = addInterceptors(
-        dio); // Thêm các interceptor để quản lý các yêu cầu và phản hồi HTTP.
+    Dio dio = createDio();
+    baseAPI = addInterceptors(dio);
   }
 
   Dio addInterceptors(Dio dio) {
     return dio
       ..interceptors.add(
         InterceptorsWrapper(
-          onRequest:
-              (RequestOptions options, RequestInterceptorHandler handler) {
-            requestInterceptor(options,
-                handler); // Interceptor cho phép xử lý trước khi gửi yêu cầu.
+          onRequest: (
+            RequestOptions options,
+            RequestInterceptorHandler handler,
+          ) {
+            requestInterceptor(options, handler);
           },
-          onError: (DioException e, ErrorInterceptorHandler handler) async {
-            log("ERROR: $e"); // Ghi log lỗi nếu có lỗi xảy ra trong quá trình yêu cầu.
-            handler.next(e); // Chuyển tiếp lỗi để tiếp tục xử lý.
+          onError: (
+            DioException e,
+            ErrorInterceptorHandler handler,
+          ) async {
+            log("ERROR: $e");
+            handler.next(e);
           },
-          onResponse: (Response response, ResponseInterceptorHandler handler) {
-            handler.next(response); // Chuyển tiếp phản hồi để tiếp tục xử lý.
+          onResponse: (
+            Response response,
+            ResponseInterceptorHandler handler,
+          ) {
+            handler.next(response);
           },
         ),
       );
   }
 
   Future<void> requestInterceptor(
-      RequestOptions options, RequestInterceptorHandler handler) async {
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
     String token = "";
     final jwtTokenHelper = JwtTokenHelper();
 
-    // Kiểm tra xem JWT token có tồn tại không.
     if (await jwtTokenHelper.existJwtToken()) {
-      // Nếu token không hợp lệ thì kiểm tra và cập nhật lại token.
       if (!await jwtTokenHelper.isValidAccessToken()) {
         if (!await jwtTokenHelper.isValidRefreshToken()) {
-          throw const RefreshTokenExpiredException(); // Nếu refresh token hết hạn, ném ra ngoại lệ.
+          throw const RefreshTokenExpiredException();
         }
         Dio dio = Dio(opts);
         Response<dynamic> response = await dio.post(
@@ -71,67 +71,77 @@ class ApiBaseCore {
             "refresh": await jwtTokenHelper.getRefreshToken(),
           },
         ).onError(
-          (DioException error, stackTrace) => handleError(
-              error), // Xử lý lỗi nếu có trong quá trình làm mới token.
+          (DioException error, stackTrace) => handleError(error),
         );
         await jwtTokenHelper.saveNewJwtTokens(
-          response.data["access"], // Lưu lại access token mới.
-          response.data["refresh"], // Lưu lại refresh token mới.
+          response.data["access"],
+          response.data["refresh"],
         );
-        log("New access token: ${response.data["access"]}"); // Ghi log access token mới.
-        log("New refresh token: ${response.data["refresh"]}"); // Ghi log refresh token mới.
+        log("New access token: ${response.data["access"]}");
+        log("New refresh token: ${response.data["refresh"]}");
         token = response.data["access"];
       }
-      token = await jwtTokenHelper
-          .getAccessToken(); // Lấy access token để sử dụng cho yêu cầu.
-      options.headers.addAll({
-        "Authorization": "Bearer $token"
-      }); // Thêm token vào header của yêu cầu.
+      token = await jwtTokenHelper.getAccessToken();
+      options.headers.addAll({"Authorization": "Bearer $token"});
     }
     log("____________________");
-    log("URL: ${options.baseUrl}${options.path}"); // Ghi log URL của yêu cầu.
-    log("METHOD: ${options.method}"); // Ghi log phương thức HTTP của yêu cầu.
-    log("Headers: ${options.headers}"); // Ghi log các header của yêu cầu.
-    log("Data: ${options.data}"); // Ghi log dữ liệu (body) của yêu cầu.
-    log("QueryParams: ${options.queryParameters}"); // Ghi log các tham số query của yêu cầu.
+    log("URL: ${options.baseUrl}${options.path}");
+    log("METHOD: ${options.method}");
+    log("Headers: ${options.headers}");
+    log("Data: ${options.data}");
+    log("QueryParams: ${options.queryParameters}");
     log("____________________");
-    handler.next(
-        options); // Tiếp tục xử lý yêu cầu sau khi đã thêm các thông tin cần thiết.
+    handler.next(options);
   }
 
-  // Các phương thức HTTP được định nghĩa để gửi yêu cầu GET, POST, PUT, DELETE.
-  Future<Response?> getHTTP(String path,
-      {Map<String, dynamic>? queryParameters}) async {
+  Future<Response?> getHTTP(
+    String path, {
+    Map<String, dynamic>? queryParameters,
+  }) async {
     try {
-      Response response = await baseAPI.get(path,
-          queryParameters: queryParameters); // Gửi yêu cầu GET.
+      Response response = await baseAPI.get(
+        path,
+        queryParameters: queryParameters,
+      );
       return response;
     } on DioException catch (e) {
-      handleError(e); // Xử lý lỗi nếu có trong quá trình gửi yêu cầu.
+      handleError(e);
     }
     return null;
   }
 
-  Future<Response?> postHTTP(String path, dynamic data,
-      {Map<String, dynamic>? queryParameters}) async {
+  Future<Response?> postHTTP(
+    String path,
+    dynamic data, {
+    Map<String, dynamic>? queryParameters,
+  }) async {
     try {
-      Response response = await baseAPI.post(path,
-          data: data, queryParameters: queryParameters); // Gửi yêu cầu POST.
+      Response response = await baseAPI.post(
+        path,
+        data: data,
+        queryParameters: queryParameters,
+      );
       return response;
     } on DioException catch (e) {
-      handleError(e); // Xử lý lỗi nếu có trong quá trình gửi yêu cầu.
+      handleError(e);
     }
     return null;
   }
 
-  Future<Response?> putHTTP(String path, dynamic data,
-      {Map<String, dynamic>? queryParameters}) async {
+  Future<Response?> putHTTP(
+    String path,
+    dynamic data, {
+    Map<String, dynamic>? queryParameters,
+  }) async {
     try {
-      Response response = await baseAPI.put(path,
-          data: data, queryParameters: queryParameters); // Gửi yêu cầu PUT.
+      Response response = await baseAPI.put(
+        path,
+        data: data,
+        queryParameters: queryParameters,
+      );
       return response;
     } on DioException catch (e) {
-      handleError(e); // Xử lý lỗi nếu có trong quá trình gửi yêu cầu.
+      handleError(e);
     }
     return null;
   }
@@ -139,46 +149,44 @@ class ApiBaseCore {
   Future<Response?> deleteHTTP(String path,
       {Map<String, dynamic>? queryParameters}) async {
     try {
-      Response response = await baseAPI.delete(path,
-          queryParameters: queryParameters); // Gửi yêu cầu DELETE.
+      Response response = await baseAPI.delete(
+        path,
+        queryParameters: queryParameters,
+      );
       return response;
     } on DioException catch (e) {
-      handleError(e); // Xử lý lỗi nếu có trong quá trình gửi yêu cầu.
+      handleError(e);
     }
     return null;
   }
 
-  // Phương thức xử lý lỗi dựa trên loại lỗi được trả về từ Dio.
   handleError(DioException error) {
     switch (error.type) {
       case DioExceptionType.connectionTimeout:
-        throw const NoInternetConnectionException(); // Ném ngoại lệ khi không có kết nối Internet.
+        throw const NoInternetConnectionException();
       case DioExceptionType.sendTimeout:
-        throw const NoInternetConnectionException(); // Ném ngoại lệ khi yêu cầu gửi bị timeout.
+        throw const NoInternetConnectionException();
       case DioExceptionType.receiveTimeout:
-        throw const NoInternetConnectionException(); // Ném ngoại lệ khi yêu cầu nhận bị timeout.
+        throw const NoInternetConnectionException();
       case DioExceptionType.badResponse:
         if (error.response == null) {
-          throw BadRequestException(
-              ""); // Ném ngoại lệ khi không nhận được phản hồi từ server.
+          throw BadRequestException("");
         }
         switch (error.response?.statusCode) {
           case 401:
-            throw const UnauthorizedException(); // Ném ngoại lệ khi không được ủy quyền (Unauthorized).
+            throw const UnauthorizedException();
           case 400:
-            throw BadRequestException(
-                ""); // Ném ngoại lệ khi yêu cầu không hợp lệ (Bad Request).
+            throw BadRequestException("");
           case 404:
-            throw const NotFoundEndPointException(); // Ném ngoại lệ khi không tìm thấy endpoint.
+            throw const NotFoundEndPointException();
           case 500:
-            throw InternalServerErrorException(); // Ném ngoại lệ khi server gặp lỗi.
+            throw InternalServerErrorException();
         }
         break;
       case DioExceptionType.cancel:
         break;
       default:
-        throw BadRequestException(
-            "Unknown error"); // Ném ngoại lệ khi gặp lỗi không xác định.
+        throw BadRequestException("Unknown error");
     }
   }
 }

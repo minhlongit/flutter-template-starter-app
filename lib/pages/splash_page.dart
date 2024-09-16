@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
-import 'package:starter_app/constants/style/style_constants.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:starter_app/routes/routes_constants.dart';
+import 'package:starter_app/constants/style/style_constants.dart';
 import 'package:starter_app/services/locale_service_provider.dart';
 
 class SplashPage extends StatefulWidget {
