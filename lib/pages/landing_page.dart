@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:starter_app/l10n/l10n.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:starter_app/constants/style/style_constants.dart';
+import 'package:starter_app/widgets/custom_app_bar.dart';
 import 'package:starter_app/services/locale_service_provider.dart';
 import 'package:starter_app/services/loading_service_provider.dart';
 
@@ -11,7 +12,6 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     final localeProvider = Provider.of<LocaleServiceProvider>(context);
     final loadingProvider = Provider.of<LoadingServiceProvider>(
       context,
@@ -26,19 +26,9 @@ class LandingPage extends StatelessWidget {
     });
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: StyleConstants.scaffoldBackgroundColor,
-        toolbarHeight: size.height * 0.1,
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        title: Text(
-          AppLocalizations.of(context)!.appName,
-          style: const TextStyle(
-            fontSize: 20,
-            color: StyleConstants.colorTitle,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+      appBar: CustomAppBar(
+        title: AppLocalizations.of(context)!.appName,
+        showBackButton: false,
         actions: [
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16),

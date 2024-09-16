@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -48,14 +47,6 @@ class _SplashPageState extends State<SplashPage> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        toolbarHeight: 0,
-      ),
       backgroundColor: Colors.white,
       body: Stack(
         alignment: Alignment.center,

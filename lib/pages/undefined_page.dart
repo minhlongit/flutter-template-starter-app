@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starter_app/widgets/custom_app_bar.dart';
 
 class UndefinedPage extends StatelessWidget {
   final String? name;
@@ -7,7 +8,7 @@ class UndefinedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Undefined View")),
+      appBar: const CustomAppBar(title: "Undefined View"),
       body: Center(
         child: Text("Route for $name is not defined"),
       ),
