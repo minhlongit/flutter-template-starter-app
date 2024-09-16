@@ -1,6 +1,6 @@
 class AppAssets {
   // images
-  static String get imgBrand => 'assets/images/brand.png';
+  static String get imgBrand => 'assets/images/brand-logo.png';
 
   // icons
   static String get icApp => 'assets/icons/ic_flutter.png';
