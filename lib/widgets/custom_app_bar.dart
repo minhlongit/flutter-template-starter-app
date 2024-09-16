@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:starter_app/themes/app_assets.dart';
 import 'package:starter_app/constants/style/style_constants.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String title;
+  final String? title;
   final Color titleColor;
   final Color backgroundColor;
   final bool showBackButton;
@@ -11,7 +12,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   const CustomAppBar({
     Key? key,
-    required this.title,
+    this.title,
     this.actions,
     this.onBackPressed,
     this.showBackButton = true,
@@ -34,14 +35,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               icon: const Icon(Icons.menu),
               onPressed: () => Scaffold.of(context).openDrawer(),
             ),
-      title: Text(
-        title,
-        style: TextStyle(
-          color: titleColor,
-          fontSize: 20.0,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
+      title: title != null
+          ? Text(
+              title!,
+              style: TextStyle(
+                color: titleColor,
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
+            )
+          : Image.asset(
+              AppAssets.imgLogo,
+              height: 40.0,
+            ),
       actions: actions,
     );
   }

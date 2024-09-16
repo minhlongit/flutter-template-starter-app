@@ -17,7 +17,6 @@ class LandingPage extends StatelessWidget {
     return Scaffold(
       drawer: const CustomDrawer(),
       appBar: CustomAppBar(
-        title: AppLocalizations.of(context)!.appName,
         showBackButton: false,
         actions: [
           Container(
