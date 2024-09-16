@@ -2,5 +2,14 @@
   "appName": "Starter App",
   "helloWorld": "Hello Starter App!",
   "error_noInternet": "Check you internet connection and retry!",
-  "retry": "Retry"
+  "retry": "Retry",
+  "home": "Home",
+  "dashboard": "Dashboard",
+  "notifications": "Notifications",
+  "setting": "Setting",
+  "todo": "Todo",
+  "inbox": "Inbox",
+  "calendar": "Calendar",
+  "login": "Login",
+  "signup": "Sign Up"
 }

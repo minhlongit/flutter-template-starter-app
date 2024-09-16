@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:starter_app/constants/style/style_constants.dart';
+import 'package:starter_app/routes/routes_constants.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -61,7 +62,8 @@ class CustomDrawer extends StatelessWidget {
                     child: Text('Đăng xuất'),
                   ),
                   onTap: () {
-                    Navigator.pop(context);
+                    Navigator.of(context)
+                        .pushReplacementNamed(RoutesConstants.authRoute);
                   },
                 ),
               ],

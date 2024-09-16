@@ -32,7 +32,7 @@ class _SplashPageState extends State<SplashPage> {
     if (!hasConnection) {
       Navigator.of(context).popAndPushNamed(RoutesConstants.noInternetRoute);
     } else {
-      Navigator.of(context).popAndPushNamed(RoutesConstants.landingRoute);
+      Navigator.of(context).popAndPushNamed(RoutesConstants.authRoute);
     }
   }
 

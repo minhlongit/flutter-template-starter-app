@@ -2,5 +2,14 @@
   "appName": "Starter App",
   "helloWorld": "こんにちは、Starter App!",
   "error_noInternet": "インターネット接続を確認して、もう一度お試しください！",
-  "retry": "再試行"
+  "retry": "再試行",
+  "home": "ホーム",
+  "dashboard": "ダッシュボード",
+  "notifications": "通知",
+  "setting": "設定",
+  "todo": "ToDo",
+  "inbox": "Inbox",
+  "calendar": "カレンダー",
+  "login": "ログイン",
+  "signup": "サインアップ"
 }
