@@ -1,4 +1,5 @@
 {
+  "appName": "Starter App",
   "helloWorld": "Hello Starter App!",
   "error_noInternet": "Check you internet connection and retry!",
   "retry": "Retry"

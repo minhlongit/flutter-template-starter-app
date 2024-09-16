@@ -1,4 +1,5 @@
 {
+  "appName": "Starter App",
   "helloWorld": "こんにちは、Starter App!",
   "error_noInternet": "インターネット接続を確認して、もう一度お試しください！",
   "retry": "再試行"

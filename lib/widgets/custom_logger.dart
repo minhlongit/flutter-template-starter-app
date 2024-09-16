@@ -1,12 +1,13 @@
-import 'package:logger/logger.dart';
 import 'package:intl/intl.dart';
+import 'package:logger/logger.dart';
 
 class CustomLogPrinter extends LogPrinter {
   final bool printTime;
   final DateFormat _dateFormat;
 
-  CustomLogPrinter({this.printTime = true})
-      : _dateFormat = DateFormat('yyyy-MM-dd HH:mm:ss');
+  CustomLogPrinter({
+    this.printTime = true,
+  }) : _dateFormat = DateFormat('yyyy-MM-dd HH:mm:ss');
 
   static final _levelEmojis = {
     Level.debug: '🐛',
@@ -50,16 +51,18 @@ class CustomLogger {
   void debug(String message) => _logger.d(message);
   void info(String message) => _logger.i(message);
   void warning(String message) => _logger.w(message);
-  void error(String message, [dynamic error, StackTrace? stackTrace]) =>
-      _logger.e(message, error: error, stackTrace: stackTrace);
+  void error(String message, [dynamic error, StackTrace? stackTrace]) {
+    _logger.e(message, error: error, stackTrace: stackTrace);
+  }
 }
 
 class Log {
   static void debug(String message) => CustomLogger().debug(message);
   static void info(String message) => CustomLogger().info(message);
   static void warning(String message) => CustomLogger().warning(message);
-  static void error(String message, [dynamic error, StackTrace? stackTrace]) =>
-      CustomLogger().error(message, error, stackTrace);
+  static void error(String message, [dynamic error, StackTrace? stackTrace]) {
+    CustomLogger().error(message, error, stackTrace);
+  }
 }
 
 final logger = CustomLogger();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:starter_app/routes/routes_constants.dart';
 import 'package:starter_app/constants/style/style_constants.dart';
@@ -63,8 +64,12 @@ class _SplashPageState extends State<SplashPage> {
             top: 200,
             left: 0,
             child: CustomPaint(
-              painter: Circle(size.width - size.width / 5, 0, size.width,
-                  StyleConstants.colorOfApp),
+              painter: Circle(
+                size.width - size.width / 5,
+                0,
+                size.width,
+                StyleConstants.colorOfApp,
+              ),
             ),
           ),
           Positioned(
@@ -74,16 +79,16 @@ class _SplashPageState extends State<SplashPage> {
               painter: Circle(0, 0, size.width - 100, Colors.white),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
                 FittedBox(
                   child: Text(
-                    "starter_app",
-                    style: TextStyle(
+                    AppLocalizations.of(context)!.appName,
+                    style: const TextStyle(
                       fontSize: 50,
                       color: Colors.white,
                     ),
@@ -91,8 +96,8 @@ class _SplashPageState extends State<SplashPage> {
                     maxLines: 1,
                   ),
                 ),
-                Text(
-                  "Your splashscreen!",
+                const Text(
+                  "Your Splash Screen!",
                   style: TextStyle(
                     color: Colors.white,
                   ),
@@ -112,13 +117,14 @@ class Circle extends CustomPainter {
   final double offsetY;
   final double radius;
   final Color color;
+
   Circle(this.offsetX, this.offsetY, this.radius, this.color);
+
   @override
   void paint(Canvas canvas, Size size) {
     var paint1 = Paint()
       ..color = color
       ..style = PaintingStyle.fill;
-    //a circle
     canvas.drawCircle(Offset(offsetX, offsetY), radius, paint1);
   }
 

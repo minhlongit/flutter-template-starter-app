@@ -14,6 +14,7 @@ dependencies:
   dio: ^5.6.0
   intl: ^0.19.0
   logger: ^2.4.0
+  lottie: ^3.1.2
   provider: ^6.1.2
   dart_jsonwebtoken: ^2.14.0
   shared_preferences: ^2.3.2
@@ -32,8 +33,9 @@ flutter:
   generate: true
   assets:
     - assets/
-    - assets/images/
     - assets/icons/
+    - assets/lottie/
+    - assets/images/
 
 flutter_native_splash:
   color: "#FFF4E7"

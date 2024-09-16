@@ -5,7 +5,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:starter_app/l10n/l10n.dart';
 import 'package:starter_app/themes/themes.dart';
 import 'package:starter_app/routes/routes_constants.dart';
+import 'package:starter_app/widgets/loading_widget.dart';
 import 'package:starter_app/services/locale_service_provider.dart';
+import 'package:starter_app/services/loading_service_provider.dart';
 
 class StarterApp extends StatelessWidget {
   const StarterApp({super.key});
@@ -23,6 +25,20 @@ class StarterApp extends StatelessWidget {
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: L10n.allLanguagesSupported,
           onGenerateRoute: router.generateRoute,
+          builder: (context, child) {
+            return Stack(
+              children: [
+                child!,
+                Consumer<LoadingServiceProvider>(
+                  builder: (context, loadingProvider, child) {
+                    return loadingProvider.isLoading
+                        ? const LoadingWidget()
+                        : const SizedBox.shrink();
+                  },
+                ),
+              ],
+            );
+          },
         );
       },
     );
