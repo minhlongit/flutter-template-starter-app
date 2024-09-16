@@ -3,9 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:starter_app/l10n/l10n.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:starter_app/constants/style/style_constants.dart';
+import 'package:starter_app/widgets/custom_drawer.dart';
 import 'package:starter_app/widgets/custom_app_bar.dart';
 import 'package:starter_app/services/locale_service_provider.dart';
-import 'package:starter_app/services/loading_service_provider.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -13,19 +13,9 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final localeProvider = Provider.of<LocaleServiceProvider>(context);
-    final loadingProvider = Provider.of<LoadingServiceProvider>(
-      context,
-      listen: false,
-    );
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      loadingProvider.startLoading();
-      Future.delayed(const Duration(seconds: 5), () {
-        loadingProvider.stopLoading();
-      });
-    });
 
     return Scaffold(
+      drawer: const CustomDrawer(),
       appBar: CustomAppBar(
         title: AppLocalizations.of(context)!.appName,
         showBackButton: false,
