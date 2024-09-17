@@ -2,5 +2,14 @@
   "appName": "Starter App",
   "helloWorld": "Xin chào Starter App!",
   "error_noInternet": "Kiểm tra kết nối internet của bạn và thử lại!",
-  "retry": "Thử lại"
+  "retry": "Thử lại",
+  "home": "Trang chủ",
+  "dashboard": "Bảng điều khiển",
+  "notifications": "Thông báo",
+  "setting": "Cài đặt",
+  "todo": "Cần làm",
+  "inbox": "Hộp thư",
+  "calendar": "Lịch",
+  "login": "Đăng nhập",
+  "signup": "Đăng ký"
 }
